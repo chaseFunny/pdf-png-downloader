@@ -1,8 +1,9 @@
 import { DownloadOutlined } from "@ant-design/icons";
-import { Button, Form, InputNumber, Layout, message, Select } from "antd";
+import { Button, Divider, Form, InputNumber, Layout, message, Select, Space } from "antd";
 import React, { useState } from "react";
 import request from "umi-request";
 import IconReact from "./assets/react.svg";
+import { downloadDOMElementAsImage, downloadDOMElementAsImageWithDomToImage } from "./utils";
 
 const { Content, Sider } = Layout;
 const { Option } = Select;
@@ -54,7 +55,17 @@ const App: React.FC = () => {
   return (
     <Layout className="resume-show-new" style={{ minHeight: "100vh", width: "100vw" }}>
       <Content style={{ padding: "20px", display: "flex" }}>
-        <div id="download" style={{ flex: 1, marginRight: "20px", border: "1px solid #d9d9d9", padding: "20px" }}>
+        <div
+          id="download"
+          style={{
+            flex: 1,
+            marginRight: "20px",
+            border: "1px solid #d9d9d9",
+            padding: "20px",
+            minWidth: "500px",
+            minHeight: "400px",
+          }}
+        >
           <h1>待下载内容</h1>
           <img src={IconReact} alt="示例图片" style={{ maxWidth: "100%", minHeight: 100 }} />
           <p>
@@ -62,6 +73,16 @@ const App: React.FC = () => {
           </p>
         </div>
         <Sider width={300} style={{ background: "#fff", padding: "20px" }}>
+          <Space direction="vertical">
+            <Button onClick={() => downloadDOMElementAsImage("download", "html2canvas.png")}>html2canvas 下载</Button>
+            <Button
+              type="primary"
+              onClick={() => downloadDOMElementAsImageWithDomToImage("download", "dom-to-image.png")}
+            >
+              dom-to-image 下载
+            </Button>
+          </Space>
+          <Divider />
           <Form layout="vertical">
             <Form.Item label="下载类型">
               <Select value={downloadType} onChange={(value: downloadType) => setDownloadType(value)}>
