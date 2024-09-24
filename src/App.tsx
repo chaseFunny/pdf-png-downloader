@@ -6,7 +6,6 @@ import IconReact from "./assets/react.svg";
 
 const { Content, Sider } = Layout;
 const { Option } = Select;
-const SERVER_SECRET = "5UJZyiE1Y0vmNjfv";
 const App: React.FC = () => {
   const [downloadType, setDownloadType] = useState<downloadType>("png");
   const [quality, setQuality] = useState<number>(80);
@@ -67,7 +66,7 @@ const App: React.FC = () => {
             <Form.Item label="下载类型">
               <Select value={downloadType} onChange={(value: downloadType) => setDownloadType(value)}>
                 <Option value="png">PNG</Option>
-                <Option value="jpeg">JPEG</Option>
+                {/* <Option value="jpeg">JPEG</Option> */}
                 <Option value="pdf">PDF</Option>
               </Select>
             </Form.Item>

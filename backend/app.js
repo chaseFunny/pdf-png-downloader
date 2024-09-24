@@ -57,7 +57,8 @@ app.post("/download", async (req, res) => {
       });
       res.contentType("application/pdf");
       res.attachment("resume.pdf");
-      res.send(pdf);
+      // 返回二进制数据给前端
+      res.send(Buffer.from(pdf));
     } else {
       res.status(400).send("Invalid type");
     }
